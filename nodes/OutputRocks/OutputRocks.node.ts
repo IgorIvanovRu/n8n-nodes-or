@@ -1,4 +1,4 @@
-import {INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError, IWebhookResponseData,} from 'n8n-workflow';
+import {INodeExecutionData, INodeType, INodeTypeDescription, IWebhookResponseData, NodeOperationError,} from 'n8n-workflow';
 import {IExecuteFunctions, IWebhookFunctions, WAIT_TIME_UNLIMITED} from "n8n-core";
 import {OptionsWithUri} from "request-promise-native";
 
@@ -13,13 +13,12 @@ export class OutputRocks implements INodeType {
 		description: 'Generating template document',
 		defaults: {
 			name: 'OutputRocks',
-			color: '#3b4151',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'OutputRocksApi',
+				name: 'outputRocksApi',
 				required: true,
 			},
 		],
@@ -61,13 +60,12 @@ export class OutputRocks implements INodeType {
 				displayName: 'Webhook Identifier',
 				name: 'webhook',
 				type: 'string',
-				required: false,
 				default: '',
 				placeholder: 'n8n-webhook',
 				description: 'The Webhook of the document',
 			},
 			{
-				displayName: 'Template identifier',
+				displayName: 'Template Identifier',
 				name: 'template',
 				type: 'string',
 				required: true,
@@ -79,7 +77,6 @@ export class OutputRocks implements INodeType {
 				displayName: 'Metadata',
 				name: 'metadata',
 				type: 'string',
-				required: false,
 				default: '',
 				placeholder: 'metadata',
 				description: 'Metadata description',
@@ -94,10 +91,9 @@ export class OutputRocks implements INodeType {
 				description: 'Data description',
 			},
 			{
-				displayName: 'Webhook waiting URL',
+				displayName: 'Webhook Waiting URL',
 				name: 'webhookWaitingUrl',
 				type: 'hidden',
-				required: false,
 				default: '={{$resumeWebhookUrl}}',
 			},
 		],
@@ -134,6 +130,7 @@ export class OutputRocks implements INodeType {
 				const data = this.getNodeParameter('data', itemIndex) as string;
 				const webhookWaitingUrl = this.getNodeParameter('webhookWaitingUrl', itemIndex) as string;
 
+				// tslint:disable-next-line:no-any
 				const jsonBody: { [key: string]: any } = {
 					"template": template,
 					"format": format,
@@ -155,6 +152,7 @@ export class OutputRocks implements INodeType {
 					headers: {
 						'Accept': 'application/json',
 						'Content-Type': 'application/json',
+						'X-AUTH-TOKEN': '={{$credentials.apiToken}}',
 					},
 					method: 'POST',
 					body: jsonBody,
@@ -162,7 +160,7 @@ export class OutputRocks implements INodeType {
 					json: true,
 				};
 
-				responseData = await this.helpers.requestWithAuthentication.call(this, 'OutputRocksApi', options);
+				responseData = await this.helpers.requestWithAuthentication.call(this, 'outputRocksApi', options);
 				returnData.push(responseData);
 				item = items[itemIndex];
 				item.json = responseData;

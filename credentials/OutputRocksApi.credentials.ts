@@ -5,7 +5,7 @@ import {
 } from 'n8n-workflow';
 
 export class OutputRocksApi implements ICredentialType {
-	name = 'OutputRocksApi';
+	name = 'outputRocksApi';
 	displayName = 'OutputRocks API';
 	documentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
 	properties: INodeProperties[] = [
@@ -16,13 +16,4 @@ export class OutputRocksApi implements ICredentialType {
 			default: '',
 		},
 	];
-
-	authenticate = {
-		type: 'generic',
-		properties: {
-			headers: {
-				'X-AUTH-TOKEN': '={{$credentials.apiToken}}',
-			},
-		},
-	} as IAuthenticateGeneric;
 }
