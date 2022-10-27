@@ -1,9 +1,10 @@
 {
   "name": "n8n-nodes-or",
-  "version": "0.1.2",
+  "version": "0.1.8",
   "description": "OutputRocks",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "n8n"
   ],
   "license": "MIT",
   "homepage": "https://github.com/IgorIvanovRu/n8n-nodes-or#readme",
@@ -12,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IgorIvanovRu/n8n-nodes-or.git"
+    "url": "git+https://github.com/IgorIvanovRu/n8n-nodes-or.git"
   },
   "main": "index.js",
   "scripts": {

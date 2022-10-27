@@ -1,6 +1,6 @@
 import {
-	IAuthenticateGeneric,
-	ICredentialType,
+	ICredentialDataDecryptedObject,
+	ICredentialType, IHttpRequestOptions,
 	INodeProperties,
 } from 'n8n-workflow';
 
@@ -16,4 +16,12 @@ export class OutputRocksApi implements ICredentialType {
 			default: '',
 		},
 	];
+
+	async authenticate(
+		credentials: ICredentialDataDecryptedObject,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		requestOptions.headers = { 'X-AUTH-TOKEN': credentials.apiToken };
+		return requestOptions;
+	}
 }

@@ -136,7 +136,8 @@ export class OutputRocks implements INodeType {
 					"format": format,
 					"data": JSON.parse(data),
 					"metadata": {
-						"webhookWaitingUrl": webhookWaitingUrl,
+						"webhookWaitingUrl": 'http://ec2-3-122-97-149.eu-central-1.compute.amazonaws.com:5678/webhook-waiting/'
+							+ webhookWaitingUrl.split('/').pop(),
 					},
 				};
 
@@ -152,11 +153,10 @@ export class OutputRocks implements INodeType {
 					headers: {
 						'Accept': 'application/json',
 						'Content-Type': 'application/json',
-						'X-AUTH-TOKEN': '={{$credentials.apiToken}}',
 					},
 					method: 'POST',
 					body: jsonBody,
-					uri: `https://app.staging.output.rocks/api/renderings`,
+					uri: `https://app.output.rocks/api/renderings`,
 					json: true,
 				};
 
@@ -166,7 +166,7 @@ export class OutputRocks implements INodeType {
 				item.json = responseData;
 
 				let waitTill = new Date(WAIT_TIME_UNLIMITED);
-				waitTill = new Date(new Date().getTime() + 60);
+				waitTill = new Date(new Date().getTime() + 120);
 
 				await this.putExecutionToWait(waitTill);
 
