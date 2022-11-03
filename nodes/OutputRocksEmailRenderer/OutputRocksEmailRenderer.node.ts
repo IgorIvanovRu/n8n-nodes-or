@@ -2,17 +2,16 @@ import {INodeExecutionData, INodeType, INodeTypeDescription, IWebhookResponseDat
 import {IExecuteFunctions, IWebhookFunctions, WAIT_TIME_UNLIMITED} from "n8n-core";
 import {OptionsWithUri} from "request-promise-native";
 
-export class OutputRocks implements INodeType {
+export class OutputRocksEmailRenderer implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OutputRocks',
-		name: 'OutputRocks',
-		icon: 'file:outputrocks.svg',
+		displayName: 'Output.Rocks Email Renderer',
+		name: 'OutputRocksEmailRenderer',
+		// icon: 'file:OutputRocksTrigger.svg',
 		group: ['transform'],
 		version: 1,
-		subtitle: 'rendering template',
-		description: 'Generating template document',
+		description: 'Generating email document',
 		defaults: {
-			name: 'OutputRocks',
+			name: 'Output.Rocks Email Renderer',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -35,28 +34,6 @@ export class OutputRocks implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Format',
-				name: 'format',
-				type: 'options',
-				noDataExpression: true,
-				options: [
-					{
-						name: 'PDF',
-						value: 'pdf',
-					},
-					{
-						name: 'TXT',
-						value: 'txt',
-					},
-					{
-						name: 'HTML',
-						value: 'html',
-					},
-				],
-				default: 'pdf',
-				description: 'Document format',
-			},
-			{
 				displayName: 'Webhook Identifier',
 				name: 'webhook',
 				type: 'string',
@@ -65,13 +42,21 @@ export class OutputRocks implements INodeType {
 				description: 'The Webhook of the document',
 			},
 			{
-				displayName: 'Template Identifier',
-				name: 'template',
+				displayName: 'Email Template Identifier',
+				name: 'email_template',
 				type: 'string',
 				required: true,
 				default: '',
-				placeholder: 'sample',
-				description: 'The identifier of the template',
+				placeholder: 'my-email',
+				description: 'The identifier of the email template',
+			},
+			{
+				displayName: 'Email Server Identifier',
+				name: 'email_server',
+				type: 'string',
+				required: true,
+				default: '',
+				placeholder: 'server-identifier',
 			},
 			{
 				displayName: 'Metadata',

@@ -6,7 +6,7 @@ import {
 
 export class OutputRocksApi implements ICredentialType {
 	name = 'outputRocksApi';
-	displayName = 'OutputRocks API';
+	displayName = 'Output.Rocks API';
 	documentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
 	properties: INodeProperties[] = [
 		{

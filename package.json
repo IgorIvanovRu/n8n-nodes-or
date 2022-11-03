@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-or",
-  "version": "0.1.8",
+  "version": "1.0.7",
   "description": "OutputRocks",
   "keywords": [
     "n8n-community-node-package",
@@ -30,13 +30,16 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/OutputRocksApi.credentials.js"
+      "dist/credentials/OutputRocksApi.credentials.js",
+      "dist/credentials/OutputRocksTriggerApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/OutputRocks/OutputRocks.node.js"
+      "dist/nodes/OutputRocksDocumentRenderer/OutputRocksDocumentRenderer.node.js",
+      "dist/nodes/OutputRocksTrigger/OutputRocksTrigger.node.js"
     ]
   },
   "devDependencies": {
+    "@types/basic-auth": "^1.1.2",
     "@types/express": "^4.17.6",
     "@types/request-promise-native": "~1.0.15",
     "@typescript-eslint/parser": "^5.29.0",
@@ -47,5 +50,8 @@
     "prettier": "^2.7.1",
     "tslint": "^6.1.2",
     "typescript": "~4.6.0"
+  },
+  "dependencies": {
+    "basic-auth": "^2.0.1"
   }
 }
