@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-or",
-  "version": "1.0.7",
+  "version": "1.0.22",
   "description": "OutputRocks",
   "keywords": [
     "n8n-community-node-package",
@@ -35,6 +35,7 @@
     ],
     "nodes": [
       "dist/nodes/OutputRocksDocumentRenderer/OutputRocksDocumentRenderer.node.js",
+      "dist/nodes/OutputRocksEmailRenderer/OutputRocksEmailRenderer.node.js",
       "dist/nodes/OutputRocksTrigger/OutputRocksTrigger.node.js"
     ]
   },

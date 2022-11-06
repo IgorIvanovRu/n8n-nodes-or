@@ -1,9 +1,9 @@
 {
 	"node": "n8n-nodes-base.OutputRocksTrigger",
-	"nodeVersion": "1.1",
-	"codexVersion": "1.1",
+	"nodeVersion": "1.2",
+	"codexVersion": "1.2",
 	"categories": [
-		"miscellaneous"
+		"Miscellaneous"
 	],
 	"resources": {
 		"credentialDocumentation": [

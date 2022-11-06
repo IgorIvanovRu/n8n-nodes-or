@@ -74,20 +74,11 @@ export class OutputRocksTrigger implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Path 1',
+				displayName: 'Path',
 				name: 'path',
 				type: 'string',
 				default: '',
 				placeholder: 'path',
-				required: true,
-				description: 'The path to listen to',
-			},
-			{
-				displayName: 'Path 2',
-				name: 'pathing',
-				type: 'string',
-				default: '',
-				placeholder: 'pathing',
 				required: true,
 				description: 'The path to listen to',
 			},

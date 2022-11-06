@@ -6,7 +6,7 @@ export class OutputRocksEmailRenderer implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Output.Rocks Email Renderer',
 		name: 'OutputRocksEmailRenderer',
-		// icon: 'file:OutputRocksTrigger.svg',
+		icon: 'file:OutputRocksEmailRenderer.svg',
 		group: ['transform'],
 		version: 1,
 		description: 'Generating email document',

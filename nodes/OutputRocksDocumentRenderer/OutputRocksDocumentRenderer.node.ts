@@ -8,7 +8,7 @@ export class OutputRocksDocumentRenderer implements INodeType {
 		name: 'outputRocksDocumentRenderer',
 		icon: 'file:OutputRocksDocumentRenderer.svg',
 		group: ['utility'],
-		version: 1,
+		version: 2,
 		description: 'Generating template document',
 		defaults: {
 			name: 'Output.Rocks Document Renderer',
@@ -34,7 +34,7 @@ export class OutputRocksDocumentRenderer implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Format 123',
+				displayName: 'Format',
 				name: 'format',
 				type: 'options',
 				noDataExpression: true,
@@ -127,17 +127,12 @@ export class OutputRocksDocumentRenderer implements INodeType {
 				const template = this.getNodeParameter('template', itemIndex) as string;
 				const metadata = this.getNodeParameter('metadata', itemIndex) as string;
 				const data = this.getNodeParameter('data', itemIndex) as string;
-				// const webhookWaitingUrl = this.getNodeParameter('webhookWaitingUrl', itemIndex) as string;
 
 				// tslint:disable-next-line:no-any
 				const jsonBody: { [key: string]: any } = {
 					"template": template,
 					"format": format,
 					"data": JSON.parse(data),
-					// "metadata": {
-					// 	"webhookWaitingUrl": 'http://ec2-3-122-97-149.eu-central-1.compute.amazonaws.com:5678/webhook-waiting/'
-					// 		+ webhookWaitingUrl.split('/').pop(),
-					// },
 				};
 
 				if (metadata) {
@@ -155,7 +150,7 @@ export class OutputRocksDocumentRenderer implements INodeType {
 					},
 					method: 'POST',
 					body: jsonBody,
-					uri: `http://localhost:8080/api/renderings`,
+					uri: `https://app.staging.output.rocks/api/renderings`,
 					json: true,
 				};
 
@@ -163,13 +158,6 @@ export class OutputRocksDocumentRenderer implements INodeType {
 				returnData.push(responseData);
 				item = items[itemIndex];
 				item.json = responseData;
-
-				// let waitTill = new Date(WAIT_TIME_UNLIMITED);
-				// waitTill = new Date(new Date().getTime() + 120);
-				//
-				// await this.putExecutionToWait(waitTill);
-				//
-				// return [this.getInputData()];
 			} catch (error) {
 				// This node should never fail but we want to showcase how
 				// to handle errors.

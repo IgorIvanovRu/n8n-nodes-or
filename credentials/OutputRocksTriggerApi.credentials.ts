@@ -6,13 +6,13 @@ export class OutputRocksTriggerApi implements ICredentialType {
 	documentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
 	properties: INodeProperties[] = [
 		{
-			displayName: 'User (client identifier 1)',
+			displayName: 'User (client identifier)',
 			name: 'clientIdentifier',
 			type: 'string',
 			default: '',
 		},
 		{
-			displayName: 'Password (webhook secret key 2)',
+			displayName: 'Password (webhook secret key)',
 			name: 'webhookSecretKey',
 			type: 'string',
 			typeOptions: {minValue: 32},
