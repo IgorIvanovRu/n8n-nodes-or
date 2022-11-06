@@ -35,7 +35,6 @@
     ],
     "nodes": [
       "dist/nodes/OutputRocksDocumentRenderer/OutputRocksDocumentRenderer.node.js",
-      "dist/nodes/OutputRocksEmailRenderer/OutputRocksEmailRenderer.node.js",
       "dist/nodes/OutputRocksTrigger/OutputRocksTrigger.node.js"
     ]
   },
